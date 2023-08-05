@@ -5,9 +5,11 @@ import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { AddToCardThunk } from "../../Reducers/CardReducer";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Product = ({ img, rs, name, rating, quantity, id }) => {
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
   const options = {
     edit: false,
     color: "rgba(20,20,20,0.1)",
@@ -29,8 +31,12 @@ const Product = ({ img, rs, name, rating, quantity, id }) => {
     <>
       <div className="gallery">
         <div className="content">
-          <img src={img} alt={name} />
-          <h3>{name}</h3>
+          <img
+            src={img}
+            alt={name}
+            onClick={() => Navigate(`/product/${id}`)}
+          />
+          <h3 onClick={() => Navigate(`/product/${id}`)}>{name}</h3>
           <p>
             <ReactStars {...options} />
           </p>

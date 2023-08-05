@@ -5,8 +5,11 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
 import { DeleteTheCard, UpdateTheCard } from "../../Reducers/CardReducer";
 import { Button } from "@chakra-ui/react";
+import Loader from "../Loader/Loader";
+import axios from "axios";
 const Cart = ({ img, price, neededQuantity, totalQuantity, name, id }) => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [required, setRequired] = useState(neededQuantity);
   const increase = () => {
     if (required + 1 <= totalQuantity) {
@@ -27,6 +30,48 @@ const Cart = ({ img, price, neededQuantity, totalQuantity, name, id }) => {
   const DeleteCard = () => {
     dispatch(DeleteTheCard({ id: id }));
   };
+  const BuyCard = async () => {
+    setLoading(true);
+    try {
+      const Arr = [
+        {
+          card_id: id,
+          name: name,
+          img: img,
+          price: price,
+          quantity: required,
+        },
+      ];
+      await fetch(`${process.env.REACT_APP_ENDPOINT}/v1/user/card/payment`, {
+        method: "post",
+        headers: {
+          "content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Arr,
+        }),
+      })
+        .then((res) => {
+          console.log(res);
+          return res.json();
+        })
+        .then(({ url }) => {
+          setLoading(false);
+          window.location = url;
+        })
+        .catch((e) => {
+          setLoading(false);
+          toast.error(e?.message);
+        });
+      setLoading(false);
+    } catch (err) {
+      toast.error(err?.message);
+      setLoading(false);
+    }
+  };
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="shopping-cart">
       <div className="title">{name}</div>
@@ -83,6 +128,16 @@ const Cart = ({ img, price, neededQuantity, totalQuantity, name, id }) => {
         </div>
         <Button backgroundColor={"red"} color={"white"} onClick={DeleteCard}>
           Delete
+        </Button>
+        <Button
+          backgroundColor={"blue"}
+          color={"white"}
+          style={{
+            margin: "10px",
+          }}
+          onClick={BuyCard}
+        >
+          Buy
         </Button>
       </div>
     </div>

@@ -10,6 +10,7 @@ export const FetchAllProduct = createAsyncThunk("FetchAllproduct", async () => {
     }
 });
 
+
 export const ProductReducer = createSlice({
     name:"GetAllProduct",
     initialState: {
@@ -29,6 +30,7 @@ export const ProductReducer = createSlice({
             state.err = action.payload;
             state.loading = false;
         })
+        
     }
 });
 export default ProductReducer.reducer;

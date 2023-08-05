@@ -17,15 +17,18 @@ const MainPageSlider = () => {
   }
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
-      {Arr?.map((items, index) => (
-        <Product
-          img={items.img}
-          name={items.name}
-          rs={items.price}
-          rating={items.rating}
-          id={items._id}
-        ></Product>
-      ))}
+      {Arr?.map(
+        (items, index) =>
+          index <= 7 && (
+            <Product
+              img={items.img}
+              name={items.name}
+              rs={items.price}
+              rating={items.rating}
+              id={items._id}
+            ></Product>
+          )
+      )}
     </div>
   );
 };

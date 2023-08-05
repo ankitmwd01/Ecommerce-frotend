@@ -8,7 +8,9 @@ const Header = () => {
   const token = Cookies.get("login");
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(SetLogin());
+    if (token) {
+      dispatch(SetLogin());
+    }
   }, []);
   const { login } = useSelector((state) => state.AuthenticationReducer);
   return (
