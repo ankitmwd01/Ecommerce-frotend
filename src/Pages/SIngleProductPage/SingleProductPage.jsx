@@ -133,9 +133,6 @@ const SingleProductPage = () => {
               </div>
 
               <div className="purchase-info">
-                <Button mr={2} ml={2} onClick={AddCard}>
-                  Add to Card
-                </Button>
                 {Arr.quantity <= 0 ? (
                   <Button backgroundColor={"red"} color={"white"}>
                     Out Of Stock
@@ -146,7 +143,7 @@ const SingleProductPage = () => {
                     color={"white"}
                     onClick={AddCard}
                   >
-                    Buy Now
+                    Add To Card
                   </Button>
                 )}
               </div>

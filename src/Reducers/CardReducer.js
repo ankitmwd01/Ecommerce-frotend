@@ -42,6 +42,14 @@ export const CardReducer = createSlice({
         loading: false,
         err: null,
         CardArr: [],
+        total:0,
+    },
+    reducers: {
+        SetTotal(state, action) {
+            console.log(action.payload);
+            state.total = action.payload + state.total;
+            
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(GetAllCard.pending, (state, action) => {
@@ -104,7 +112,7 @@ export const CardReducer = createSlice({
         });
         builder.addCase(DeleteTheCard.fulfilled, (state, action) => {
             if (action.payload?.data) {
-                state.CardArr = state.CardArr?.filter((val, ind) => {
+                state.CardArr = state.CardArr.filter((val, ind) => {
                     return state.CardArr[ind]._id !== action.payload.data._id;
             })
             }
@@ -120,4 +128,5 @@ export const CardReducer = createSlice({
     }
     
 });
+export const { SetTotal } = CardReducer.actions;
 export default CardReducer.reducer;

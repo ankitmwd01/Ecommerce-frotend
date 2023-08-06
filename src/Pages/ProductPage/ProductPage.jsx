@@ -6,6 +6,7 @@ import data from "../data.js";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchAllProduct } from "../../Reducers/ProductReducer";
 import Loader from "../../Components/Loader/Loader";
+import { Heading } from "@chakra-ui/react";
 const ProductPage = () => {
   const dispatch = useDispatch();
   const [MinRange, MinSetRange] = useState(0);
@@ -30,7 +31,6 @@ const ProductPage = () => {
     MaxSetRange(e.target.value);
   };
 
-  const product = data;
   return (
     <div>
       <div className="searchbar">
@@ -72,7 +72,15 @@ const ProductPage = () => {
         </div>
       </div>
 
-      <h1 className="producth1">Products</h1>
+      <Heading
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          textShadow: "0px 2px 5px rgba(0,0,0,0.8)",
+        }}
+      >
+        Products
+      </Heading>
       <div className="allproduct" style={{ display: "flex", flexWrap: "wrap" }}>
         {Arr &&
           Arr.filter((ele) => {

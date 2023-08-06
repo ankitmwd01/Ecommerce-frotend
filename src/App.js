@@ -10,9 +10,8 @@ import Authentication from './Pages/Authentication/Authentication';
 import CartPage from './Pages/CartPage/CartPage';
 import SingleProductPage from './Pages/SIngleProductPage/SingleProductPage';
 import Order from './Components/Orders/Order';
-import SuccessPage from './Components/SuccessPage/SuccessPage';
-import FinalSucessPage from './Components/SuccessPage/FinalSucessPage';
-
+import EditProfile from './Components/EditProfile/EditProfile';
+import ContactUs from './Components/EditProfile/ContactUs';
 function App() {
   console.log(process.env.REACT_APP_ENDPOINT);
   return (
@@ -25,9 +24,11 @@ function App() {
         <Route path={"/cart"} element={<CartPage />}></Route>
         <Route path={"/product/:id"} element={<SingleProductPage />}></Route>
         <Route path={"/profile/order"} element={<Order />}></Route>
-        <Route path={"/payment/success/card/:id"} element={<SuccessPage />}></Route>
-         <Route path={"/successPage"} element={<FinalSucessPage/>}></Route>
-        
+        <Route path={"/profile/edit"} element={<EditProfile />}></Route>
+        <Route path={"/contact"} element={<ContactUs />}></Route>
+
+
+
       </Routes>
       <Footer />
       <Toaster/>

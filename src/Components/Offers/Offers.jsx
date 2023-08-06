@@ -7,6 +7,7 @@ import img2 from "../Assests/slide-2.png";
 import img3 from "../Assests/slide-3.png";
 import img4 from "../Assests/slide-4.png";
 import "./Offer.css";
+import { useNavigate } from "react-router-dom";
 
 const SlideCard = () => {
   const settings = {
@@ -15,6 +16,7 @@ const SlideCard = () => {
     slidesToScroll: 1,
     autoplay: true,
   };
+  const Navigate = useNavigate();
   const Sdata = [
     {
       id: 1,
@@ -63,6 +65,7 @@ const SlideCard = () => {
                       <p>{value.desc}</p>
                       <button
                         className="btn-primary1"
+                        onClick={() => Navigate("/items")}
                         style={{
                           background: " #e94560",
                           padding: " 13px 40px",

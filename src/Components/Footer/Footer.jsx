@@ -27,34 +27,25 @@ const Footer = () => {
             <h4>get help</h4>
             <ul>
               <li>
-                <Link to={"/"}>affiliate program</Link>
+                <Link to={"/"}>ankitmwd01@gmail.com</Link>
               </li>
               <li>
-                <Link to={"/"}>affiliate program</Link>
+                <Link to={"/"}>ankit1@gmail.com</Link>
               </li>{" "}
               <li>
-                <Link to={"/"}>affiliate program</Link>
+                <Link to={"/"}>ankitm1@gmail.com</Link>
               </li>{" "}
-              <li>
-                <Link to={"/"}>affiliate program</Link>
-              </li>
             </ul>
           </div>
           <div className="footer-col">
             <h4>online shop</h4>
             <ul>
               <li>
-                <Link to={"/"}>watch</Link>
+                <Link to={"/"}>watch On youtube</Link>
               </li>
               <li>
-                <Link to={"/"}>watch</Link>
+                <Link to={"/"}>watch on Instagram</Link>
               </li>{" "}
-              <li>
-                <Link to={"/"}>watch</Link>
-              </li>{" "}
-              <li>
-                <Link to={"/"}>watch</Link>
-              </li>
             </ul>
           </div>
           <div className="footer-col">

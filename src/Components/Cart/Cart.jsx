@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Cart.css";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useDispatch } from "react-redux";
@@ -6,14 +6,16 @@ import { toast } from "react-hot-toast";
 import { DeleteTheCard, UpdateTheCard } from "../../Reducers/CardReducer";
 import { Button } from "@chakra-ui/react";
 import Loader from "../Loader/Loader";
-import axios from "axios";
+import Cookies from "js-cookie";
 const Cart = ({ img, price, neededQuantity, totalQuantity, name, id }) => {
   const dispatch = useDispatch();
+  const token = Cookies.get("login");
   const [loading, setLoading] = useState(false);
   const [required, setRequired] = useState(neededQuantity);
   const increase = () => {
     if (required + 1 <= totalQuantity) {
       setRequired(required + 1);
+
       dispatch(UpdateTheCard({ id: id, required: required + 1 }));
     } else {
       toast.error(`only ${required} is Available`);
@@ -40,6 +42,7 @@ const Cart = ({ img, price, neededQuantity, totalQuantity, name, id }) => {
           img: img,
           price: price,
           quantity: required,
+          token: token,
         },
       ];
       await fetch(`${process.env.REACT_APP_ENDPOINT}/v1/user/card/payment`, {

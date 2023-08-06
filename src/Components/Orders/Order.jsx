@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import Loader from "../Loader/Loader";
 import OrderCard from "./OrderCard";
-
+import { Button } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { BsBackspace } from "react-icons/bs";
 const Order = () => {
   const [order, setOrder] = useState(null);
   const token = Cookies.get("login");
+  const Navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     FetchOrder();
@@ -34,6 +37,9 @@ const Order = () => {
 
   return (
     <>
+      <Button onClick={() => Navigate("/auth")}>
+        <BsBackspace />
+      </Button>
       {(!order || order?.length == 0) && (
         <h2
           style={{
