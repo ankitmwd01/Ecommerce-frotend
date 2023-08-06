@@ -115,7 +115,7 @@ const CartPage = () => {
           id={val._id}
         ></Cart>
       ))}
-      {CardArr && CardArr.length != 0 && (
+      {CardArr && CardArr?.length >= 2 && (
         <div
           style={{
             display: "flex",
