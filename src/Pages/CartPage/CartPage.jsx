@@ -16,7 +16,7 @@ const CartPage = () => {
   useEffect(() => {
     if (token) dispatch(GetAllCard(token));
   }, []);
-  const { loading, CardArr } = useSelector((state) => state.CardReducer);
+  const { CardArr } = useSelector((state) => state.CardReducer);
   if (!token) {
     return (
       <Heading
@@ -30,7 +30,7 @@ const CartPage = () => {
       </Heading>
     );
   }
-  if (loading || Loading) {
+  if (!CardArr || Loading) {
     return <Loader />;
   }
   var Total = 0;
