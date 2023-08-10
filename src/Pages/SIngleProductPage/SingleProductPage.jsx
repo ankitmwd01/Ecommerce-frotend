@@ -104,7 +104,7 @@ const SingleProductPage = () => {
                 <p className="new-price" style={{ color: "black" }}>
                   New Price :
                   <span>
-                    {Arr.price - (Arr.price / 100) * Arr.discount}
+                    {Math.round(Arr.price - (Arr.price / 100) * Arr.discount)}
                     <span> ({Arr.discount}%)</span>
                   </span>
                 </p>

@@ -111,6 +111,7 @@ const CartPage = () => {
             totalQuantity={val.product_id.quantity}
             neededQuantity={val.quantity}
             id={val._id}
+            discount={val.product_id.discount}
           ></Cart>
         ))}
       {CardArr && CardArr?.length >= 2 && (

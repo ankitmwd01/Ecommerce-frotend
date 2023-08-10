@@ -7,7 +7,15 @@ import { DeleteTheCard, UpdateTheCard } from "../../Reducers/CardReducer";
 import { Button } from "@chakra-ui/react";
 import Loader from "../Loader/Loader";
 import Cookies from "js-cookie";
-const Cart = ({ img, price, neededQuantity, totalQuantity, name, id }) => {
+const Cart = ({
+  img,
+  price,
+  neededQuantity,
+  totalQuantity,
+  name,
+  id,
+  discount,
+}) => {
   const dispatch = useDispatch();
   const token = Cookies.get("login");
   const [loading, setLoading] = useState(false);
@@ -40,7 +48,7 @@ const Cart = ({ img, price, neededQuantity, totalQuantity, name, id }) => {
           card_id: id,
           name: name,
           img: img,
-          price: price,
+          price: price - (price / 100) * discount,
           quantity: required,
           token: token,
         },
@@ -90,8 +98,11 @@ const Cart = ({ img, price, neededQuantity, totalQuantity, name, id }) => {
         </div>
 
         <div className="description">
-          <h5>Total Price : {required * price}</h5>
-          <h5>Price : {price}</h5>
+          <h5>
+            Total Price :{" "}
+            {Math.round(required * (price - (price / 100) * discount))}
+          </h5>
+          <h5>Price : {Math.round(price - (price / 100) * discount)}</h5>
         </div>
 
         <div className="quantity">

@@ -42,7 +42,7 @@ const Product = ({ img, rs, name, rating, quantity, id, discount }) => {
           <p>
             <ReactStars {...options} />
           </p>
-          <h6>₹{Math.round(rs - rs / discount)}</h6>
+          <h6>₹{Math.round(rs - (rs / 100) * discount)}</h6>
           {quantity <= 0 ? (
             <button className="buy-1" style={{ color: "red" }}>
               Out of Stock
