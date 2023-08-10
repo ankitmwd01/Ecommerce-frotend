@@ -57,7 +57,6 @@ const CartPage = () => {
             token: token,
           });
         });
-        console.log(Total);
       }
       await fetch(`${process.env.REACT_APP_ENDPOINT}/v1/user/card/payment`, {
         method: "post",
@@ -134,7 +133,7 @@ const CartPage = () => {
               fontWeight: "bold",
             }}
           >
-            Total : ₹{Total}
+            Total : ₹{Math.round(Total)}
           </h3>
           <Button onClick={BuyCard} color={"white"} backgroundColor={"blue"}>
             Buy
