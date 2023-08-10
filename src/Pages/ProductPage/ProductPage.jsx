@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import "./ProductPage.css";
 import Product from "../../Components/ProductSlider/ProductSlider";
-import data from "../data.js";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchAllProduct } from "../../Reducers/ProductReducer";
 import Loader from "../../Components/Loader/Loader";
@@ -30,6 +29,7 @@ const ProductPage = () => {
   const MaxChange = (e) => {
     MaxSetRange(e.target.value);
   };
+  console.log(Arr && Arr);
 
   return (
     <div>
@@ -100,6 +100,7 @@ const ProductPage = () => {
               img={ele.img}
               id={ele._id}
               quantity={ele.quantity}
+              discount={ele.discount}
             ></Product>
           ))}
       </div>

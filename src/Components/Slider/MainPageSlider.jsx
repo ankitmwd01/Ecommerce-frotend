@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import data from "../data.js";
 import Product from "../ProductSlider/ProductSlider.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchAllProduct } from "../../Reducers/ProductReducer.js";
@@ -10,7 +8,7 @@ const MainPageSlider = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(FetchAllProduct());
-  }, []);
+  }, [dispatch]);
   const { Arr, loading } = useSelector((state) => state.ProductReducer);
   if (loading) {
     return <Loader />;
@@ -26,6 +24,7 @@ const MainPageSlider = () => {
               rs={items.price}
               rating={items.rating}
               id={items._id}
+              discount={items.discount}
             ></Product>
           )
       )}

@@ -7,7 +7,7 @@ import { AddToCardThunk } from "../../Reducers/CardReducer";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-const Product = ({ img, rs, name, rating, quantity, id }) => {
+const Product = ({ img, rs, name, rating, quantity, id, discount }) => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const options = {
@@ -21,11 +21,13 @@ const Product = ({ img, rs, name, rating, quantity, id }) => {
   const token = Cookies.get("login");
   const AddToCard = () => {
     if (!token) return toast.error("Login First");
-    const data = {
-      product_id: id,
-      token: token,
-    };
-    dispatch(AddToCardThunk(data));
+    else {
+      const data = {
+        product_id: id,
+        token: token,
+      };
+      dispatch(AddToCardThunk(data));
+    }
   };
   return (
     <>
@@ -40,7 +42,7 @@ const Product = ({ img, rs, name, rating, quantity, id }) => {
           <p>
             <ReactStars {...options} />
           </p>
-          <h6>₹{rs}</h6>
+          <h6>₹{rs - rs / discount}</h6>
           {quantity <= 0 ? (
             <button className="buy-1" style={{ color: "red" }}>
               Out of Stock

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import data from "../data.js";
 import Cart from "../../Components/Cart/Cart.jsx";
 import { BsFillBagCheckFill } from "react-icons/bs";
 import Cookies from "js-cookie";
@@ -15,7 +14,7 @@ const CartPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (token) dispatch(GetAllCard(token));
-  }, []);
+  }, [dispatch]);
   const { CardArr } = useSelector((state) => state.CardReducer);
   if (!token) {
     return (
@@ -35,17 +34,16 @@ const CartPage = () => {
   }
   var Total = 0;
   if (CardArr?.length > 0) {
-    CardArr.map((val, ind) => {
+    CardArr.forEach((val, ind) => {
       Total += val.product_id.price * val.quantity;
     });
-    console.log(Total);
   }
   const BuyCard = async () => {
     setLoading(true);
     try {
       var Arr = [];
       if (CardArr?.length > 0) {
-        await CardArr.map((val, ind) => {
+        await CardArr.forEach((val, ind) => {
           Arr.push({
             img: val.product_id.img,
             price: val.product_id.price,
@@ -96,25 +94,25 @@ const CartPage = () => {
           color: "crimson",
         }}
       >
-        {CardArr.length == 0 ? (
+        {CardArr?.length == 0 ? (
           "No Item In card"
         ) : (
           <>
-            {" "}
-            Cart <BsFillBagCheckFill style={{ marginLeft: "20px" }} />{" "}
+            Cart <BsFillBagCheckFill style={{ marginLeft: "20px" }} />
           </>
         )}
       </h1>
-      {CardArr?.map((val, ind) => (
-        <Cart
-          img={val.product_id.img}
-          price={val.product_id.price}
-          name={val.product_id.name}
-          totalQuantity={val.product_id.quantity}
-          neededQuantity={val.quantity}
-          id={val._id}
-        ></Cart>
-      ))}
+      {CardArr?.length >= 1 &&
+        CardArr?.map((val, ind) => (
+          <Cart
+            img={val.product_id.img}
+            price={val.product_id.price}
+            name={val.product_id.name}
+            totalQuantity={val.product_id.quantity}
+            neededQuantity={val.quantity}
+            id={val._id}
+          ></Cart>
+        ))}
       {CardArr && CardArr?.length >= 2 && (
         <div
           style={{
