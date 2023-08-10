@@ -35,7 +35,10 @@ const CartPage = () => {
   var Total = 0;
   if (CardArr?.length > 0) {
     CardArr.forEach((val, ind) => {
-      Total += val.product_id.price * val.quantity;
+      Total +=
+        (val.product_id.price -
+          (val.product_id.price / 100) * val.product_id.discount) *
+        val.quantity;
     });
   }
   const BuyCard = async () => {
@@ -46,7 +49,9 @@ const CartPage = () => {
         await CardArr.forEach((val, ind) => {
           Arr.push({
             img: val.product_id.img,
-            price: val.product_id.price,
+            price:
+              val.product_id.price -
+              (val.product_id.price / 100) * val.product_id.discount,
             name: val.product_id.name,
             quantity: val.quantity,
             token: token,
