@@ -30,7 +30,9 @@ const ProductPage = () => {
     MaxSetRange(e.target.value);
   };
   console.log(Arr && Arr);
-
+  // price:
+  //           val.product_id.price -
+  //           (val.product_id.price / 100) * val.product_id.discount,
   return (
     <div>
       <div className="searchbar">
@@ -88,8 +90,10 @@ const ProductPage = () => {
               (Name.toLowerCase() === ""
                 ? ele
                 : ele.name.toLowerCase().includes(Name)) &&
-              ele.price >= (MinRange === "" ? 0 : MinRange) &&
-              ele.price <= (MaxRange === "" ? Infinity : MaxRange)
+              ele.price - (ele.price / 100) * ele.discount >=
+                (MinRange === "" ? 0 : MinRange) &&
+              ele.price - (ele.price / 100) * ele.discount <=
+                (MaxRange === "" ? Infinity : MaxRange)
             );
           }).map((ele) => (
             <Product
